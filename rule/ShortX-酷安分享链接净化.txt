@@ -1,0 +1,78 @@
+{
+  "facts": [{
+    "@type": "type.googleapis.com/ClipboardContentChanged",
+    "content": "shareKey\u003d",
+    "matchOptions": "RegexMatchOptions_ContainsMatchIn",
+    "customContextDataKey": {
+    },
+    "id": "F-759d1252-1a14-4abc-a872-92c2c5d9cf0a"
+  }],
+  "conditions": [{
+    "@type": "type.googleapis.com/CurrentPkgList",
+    "pkgs": [{
+      "pkgName": "com.coolapk.market"
+    }],
+    "op": "ANY",
+    "customContextDataKey": {
+    },
+    "id": "C-3fdd19d0-c360-4a89-8507-2df60da74bda"
+  }],
+  "actions": [{
+    "@type": "type.googleapis.com/CreateLocalVar",
+    "localVar": {
+      "name": "clipboardContent",
+      "type": {
+        "@type": "type.googleapis.com/StringVar"
+      }
+    },
+    "customContextDataKey": {
+    },
+    "id": "A-9f09c056-622e-496f-8a60-601d0ad1b6c6"
+  }, {
+    "@type": "type.googleapis.com/WriteLocalVar",
+    "varName": "clipboardContent",
+    "valueAsString": "{clipboardContent}",
+    "customContextDataKey": {
+    },
+    "note": "将【上下文变量】转换为 MVEL 表达式可以调用的【局部变量】",
+    "id": "A-7abd788e-2c1e-4e30-8b24-a25afbb17bf8"
+  }, {
+    "@type": "type.googleapis.com/ExecuteMVEL",
+    "expression": "// 导入必要的包\nimport java.util.regex.Pattern;\nimport java.util.regex.Matcher;\n\n// 对局部变量中的内容进行正则替换，删去？后的所有内容\nString result \u003d Pattern.compile(\"\\\\?.*\").matcher(localVarOf$clipboardContent).replaceAll(\"\");",
+    "customContextDataKey": {
+    },
+    "id": "A-0078637b-19b1-4813-8f52-842a93b4ad93"
+  }, {
+    "@type": "type.googleapis.com/WriteClipboard",
+    "text": "{mvelRet}",
+    "customContextDataKey": {
+    },
+    "id": "A-02820653-7130-4ccf-8438-72f74853fcce"
+  }, {
+    "@type": "type.googleapis.com/ShowDanmu",
+    "text": "{mvelRet}",
+    "icon": "remix://lightbulb-flash-line",
+    "customContextDataKey": {
+    },
+    "isDisabled": true,
+    "note": "调试用，默认关闭，当然你可以打开来提醒自己链接已净化",
+    "id": "A-4e28ab6c-4cc5-48e8-952b-847e960dfe1d"
+  }],
+  "id": "SHARE-rule-a1a514cd-56cd-460b-a30b-0fbc01e8600e",
+  "lastUpdateTime": "1731689334606",
+  "createTime": "1731605779818",
+  "author": {
+    "name": "hrsthrt74"
+  },
+  "title": "酷安分享链接净化",
+  "description": "MVEL 表达式版，无需 ShortX 高级版",
+  "isEnabled": true,
+  "hook": {
+  },
+  "quit": {
+  },
+  "versionCode": "1",
+  "ruleSetId": "RS-d9a13582-8e16-4ece-bc7b-8cab2065c2fa"
+}
+###------###
+{"type":"rule"}
